@@ -1,6 +1,5 @@
 const express = require("express");
 const app = express();
-const Joi = require("joi");
 const hello = require("./middlewares/hello");
 const routerV1 = require("./routes/v1");
 const mongoose = require("mongoose");

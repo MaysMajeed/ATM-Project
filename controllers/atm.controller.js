@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const validation = require("../utility/validate.tools");
 const validate = require("validate.js");
 
+// 💻 YOUR HOMEWORK  🔥
 const atmSchema = new mongoose.Schema({
   name: String,
   creationDate: { type: Date, default: Date.now },
