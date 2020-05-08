@@ -2,16 +2,11 @@ const express = require("express");
 const app = express();
 const validate = require("validate.js");
 const Joi = require("joi");
+const hello = require("./middlewares/hello");
 
 app.use(express.json());
 
-app.use((req, res, next) => {
-  console.log("hello");
-  let auth = true;
-  // check auth (login)
-  if (!auth) return res.status(403).send("you have to login");
-  next();
-});
+app.use(hello);
 
 const mongoose = require("mongoose");
 mongoose
