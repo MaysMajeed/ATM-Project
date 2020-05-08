@@ -5,6 +5,14 @@ const Joi = require("joi");
 
 app.use(express.json());
 
+app.use((req, res, next) => {
+  console.log("hello");
+  let auth = true;
+  // check auth (login)
+  if (!auth) return res.status(403).send("you have to login");
+  next();
+});
+
 const mongoose = require("mongoose");
 mongoose
   .connect("mongodb://Mays:maysmlab1@ds363118.mlab.com:63118/atm-db")
