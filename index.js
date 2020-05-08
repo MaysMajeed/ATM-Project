@@ -20,7 +20,7 @@ const atmSchema = new mongoose.Schema({
   city: String,
   address: String,
   loc: {
-    type: String,
+    typee: String,
     coordinates: [Number],
   },
 });
@@ -54,18 +54,47 @@ app.post("/api/Newatm", async (req, res) => {
       },
     },
     country: {
+      presence: true,
       inclusion: {
         within: { Iraq: "IQ", Egypt: "EG", Emirates: "AE" },
         message: "^We're not providing services to %{value}",
       },
     },
+    haveCash: {
+      presence: true,
+      type: "boolean",
+    },
+    working: {
+      presence: true,
+      type: "boolean",
+    },
+    city: {
+      presence: true,
+      type: "string",
+    },
+    address: {
+      presence: true,
+      type: "string",
+    },
+    loc: {
+      presence: true,
+    },
+    "loc.coordinates": {
+      presence: true,
+      type: "array",
+    },
+    "loc.type": {
+      presence: true,
+      type: "string",
+    },
   };
-  const check = validate(req.body.name, constraints);
+
+  const check = validate(req.body, constraints);
+
   console.log(check);
 
-  if (check.error) {
-    res.status(400).send(res.check.error);
-    return;
+  if (check) {
+    return res.status(400).send(check);
   } else {
     const allAtms = new AtmCollection2({
       name: req.body.name,
@@ -75,12 +104,12 @@ app.post("/api/Newatm", async (req, res) => {
       city: req.body.city,
       address: req.body.address,
       loc: {
-        type: req.body.type,
-        coordinates: [req.body.latitude, req.body.longitude],
+        typee: req.body.loc.type,
+        coordinates: req.body.loc.coordinates,
       },
     });
     allAtms.save();
-    res.send(allAtms);
+    return res.send(allAtms);
   }
 });
 
