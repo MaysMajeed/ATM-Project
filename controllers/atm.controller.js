@@ -9,11 +9,17 @@ module.exports.singleGet = async (req, res) => {
   res.send(singleAtm);
 };
 
+/**
+ *
+ */
 module.exports.getAll = async (req, res) => {
   const allAtms = await mongooseModule.find();
   res.send(allAtms);
 };
 
+/**
+ *
+ */
 module.exports.addNew = async (req, res) => {
   const check = validate(req.body, validation.addNew());
 
