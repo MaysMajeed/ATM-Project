@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+// model
 const atmSchema = new mongoose.Schema({
   name: String,
   creationDate: { type: Date, default: Date.now },
@@ -14,6 +15,6 @@ const atmSchema = new mongoose.Schema({
   },
 });
 
-const AtmCollection2 = mongoose.model("AtmCollection2", atmSchema);
+const UserCollection = mongoose.model("UserCollection", atmSchema);
 
-module.exports = AtmCollection2;
+module.exports = UserCollection;

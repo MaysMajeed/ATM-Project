@@ -46,3 +46,27 @@ module.exports.addNew = () => ({
     type: "string",
   },
 });
+
+module.exports.register = () => ({
+  name: {
+    presence: true,
+    length: {
+      minimum: 3,
+      message: "must be at least 3 characters",
+    },
+    format: {
+      pattern: "[a-z0-9]+",
+      flags: "i",
+      message: "can only contain a-z and 0-9",
+    },
+  },
+
+  email: {
+    presence: true,
+    type: "string",
+  },
+  password: {
+    presence: true,
+    type: "string",
+  },
+});
